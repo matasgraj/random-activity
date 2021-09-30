@@ -7,6 +7,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivityReducer } from './store/activity.reducer';
+import { ActivityEffects } from './store/activity.effects';
 // Components
 import { AppComponent } from './app.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
@@ -14,8 +18,6 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent, SearchPageComponent],
@@ -26,12 +28,18 @@ import { HttpClientModule } from '@angular/common/http';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
+
         StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
+
+        StoreModule.forFeature('activity', ActivityReducer),
+        EffectsModule.forFeature([ActivityEffects]),
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: !environment.production,
         }),
-        EffectsModule.forRoot([]),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+
         MatSliderModule,
         MatRadioModule,
         MatButtonModule,

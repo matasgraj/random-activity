@@ -5,7 +5,8 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { ActivitiesService } from 'src/app/services/activities.service';
+import { Store } from '@ngrx/store';
+import { searchActivity } from 'src/app/store/activity.actions';
 import {
     MAX_PARTICIPANTS,
     MIN_PARTICIPANTS,
@@ -27,10 +28,7 @@ export class SearchPageComponent implements OnInit {
 
     activityForm: FormGroup;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private activitiesService: ActivitiesService
-    ) {
+    constructor(private formBuilder: FormBuilder, private store: Store) {
         this.activityForm = this.createForm();
     }
 
@@ -56,13 +54,15 @@ export class SearchPageComponent implements OnInit {
 
     searchActivity(): void {
         const activity: Activity = this.activityForm.value;
-        this.activitiesService.getActivity({
-            ...activity,
-            accessability: activity.accessability / 100,
-            activityType:
-                activity.activityType === ActivityType.Any
-                    ? ''
-                    : activity.activityType,
-        });
+        this.store.dispatch(
+            searchActivity({
+                ...activity,
+                accessability: activity.accessability / 100,
+                activityType:
+                    activity.activityType === ActivityType.Any
+                        ? ''
+                        : activity.activityType,
+            })
+        );
     }
 }
