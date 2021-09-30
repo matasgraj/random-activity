@@ -1,18 +1,14 @@
 .logo {
-    font-size: 35px;
     color: #fff;
-    font-weight: 100;
     letter-spacing: 0.1em;
-    line-height: 30px;
+    font: 100 35px/30px Roboto;
     width: 100%;
     margin: auto;
     text-align: center;
     padding-top: 10vh;
 
     .logo-2nd-part {
-        font-weight: 500;
-        font-size: 33px;
-        line-height: 35px;
-        letter-spacing: 2.99px;
+        font: 500 33px/35px Roboto;
+        letter-spacing: 0.091em;
     }
 }

@@ -1,0 +1,26 @@
+export enum ActivityType {
+    Educational = 'education',
+    Recreational = 'recreational',
+    Social = 'social',
+    Diy = 'diy',
+    Charity = 'charity',
+    Cooking = 'cooking',
+    Relaxation = 'relaxation',
+    Music = 'music',
+    Busywork = 'busywork',
+}
+
+export const ACTIVITY_LIST = [
+    'education',
+    'recreational',
+    'social',
+    'diy',
+    'charity',
+    'cooking',
+    'relaxation',
+    'music',
+    'busywork',
+]
+
+export const MIN_PARTICIPANTS = 1
+export const MAX_PARTICIPANTS = 10

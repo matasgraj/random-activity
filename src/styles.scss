@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 html,
 body {
@@ -8,4 +9,32 @@ body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     background: linear-gradient(94.52deg, #afbf81 0%, #3a8a46 100%);
+}
+
+// mat-slider
+.mat-accent .mat-slider-track-fill {
+    background-color: #fff !important;
+}
+
+.mat-slider-thumb-label {
+    background-color: #fff !important;
+}
+
+.mat-slider-thumb {
+    background-color: #fff !important;
+}
+
+// mat-radio-button
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #fff;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    color: #fff;
+    background-color: #fff;
+}
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: #fff;
+}
+.mat-radio-label-content {
+    color: #fff;
 }

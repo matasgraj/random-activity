@@ -1,0 +1,27 @@
+.container {
+    width: 35vh;
+    margin: 12vh auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+span {
+    font: 400 24px/28px Roboto;
+    color: #fff;
+}
+.mat-button {
+    background-color: #fff;
+    color: #306028;
+    font: 500 16px/19px Roboto;
+    height: 42px;
+    border-radius: 6px;
+    margin-top: 40px;
+}
+.fa-search {
+    padding-bottom: 3px;
+    padding-right: 8px;
+}
+.mat-radio-button {
+    margin: 8px;
+    justify-content: space-evenly;
+    width: 29%;
+}
