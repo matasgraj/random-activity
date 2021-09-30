@@ -14,12 +14,17 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent, SearchPageComponent],
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
+        HttpClientModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({}, {}),
         StoreDevtoolsModule.instrument({

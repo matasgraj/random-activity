@@ -1,17 +1,39 @@
-<div class="container">
-    <span>Participants:</span>
-    <mat-slider [min]="minParticipants" [max]="maxParticipants"></mat-slider>
-    <span>Accessability:</span>
-    <mat-slider min="1" max="100"></mat-slider>
-    <span>Activity type:</span>
-    <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="1">Any</mat-radio-button>
-        <br />
-        <mat-radio-button
-            *ngFor="let activity of activityList"
-            [value]="activity"
-            >{{ activity }}</mat-radio-button
-        >
-    </mat-radio-group>
-    <button mat-button><i class="fas fa-search"></i>SEARCH</button>
-</div>
+<form [formGroup]="activityForm" (ngSubmit)="searchActivity()">
+    <div class="container">
+        <div class="inner-container">
+            <span>Participants:</span>
+            {{ this.activityForm.value.participants }}
+        </div>
+        <mat-slider
+            formControlName="participants"
+            [min]="minParticipants"
+            [max]="maxParticipants"
+        ></mat-slider>
+
+        <div class="inner-container">
+            <span>Accessability:</span>
+            {{ this.activityForm.value.accessability }}&#37;
+        </div>
+        <mat-slider
+            formControlName="accessability"
+            min="1"
+            max="100"
+        ></mat-slider>
+
+        <div class="inner-container">
+            <span>Activity type:</span>
+        </div>
+        <mat-radio-group formControlName="activityType">
+            <mat-radio-button value="any">Any</mat-radio-button>
+            <br />
+            <mat-radio-button
+                *ngFor="let activity of activityList"
+                [value]="activity"
+                >{{ activity }}</mat-radio-button
+            >
+        </mat-radio-group>
+        <button mat-button type="submit">
+            <i class="fas fa-search"></i>SEARCH
+        </button>
+    </div>
+</form>

@@ -8,6 +8,7 @@ export enum ActivityType {
     Relaxation = 'relaxation',
     Music = 'music',
     Busywork = 'busywork',
+    Any = 'any',
 }
 
 export const ACTIVITY_LIST = [
