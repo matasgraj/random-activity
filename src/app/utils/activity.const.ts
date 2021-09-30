@@ -20,7 +20,7 @@ export const ACTIVITY_LIST = [
     'relaxation',
     'music',
     'busywork',
-]
+];
 
-export const MIN_PARTICIPANTS = 1
-export const MAX_PARTICIPANTS = 10
+export const MIN_PARTICIPANTS = 1;
+export const MAX_PARTICIPANTS = 10;
