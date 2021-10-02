@@ -14,13 +14,14 @@ import { ActivityEffects } from './store/activity.effects';
 // Components
 import { AppComponent } from './app.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { ResultsPageComponent } from './components/results-page/results-page.component';
 // Material imports
 import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-    declarations: [AppComponent, SearchPageComponent],
+    declarations: [AppComponent, SearchPageComponent, ResultsPageComponent],
     imports: [
         BrowserModule,
         FormsModule,

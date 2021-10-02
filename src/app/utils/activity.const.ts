@@ -25,3 +25,6 @@ export const ACTIVITY_LIST = [
 
 export const MIN_PARTICIPANTS = 1;
 export const MAX_PARTICIPANTS = 10;
+
+export const SEARCH_PAGE_PATH = 'search-activity';
+export const RESULTS_PAGE_PATH = 'results';

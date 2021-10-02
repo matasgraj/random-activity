@@ -5,6 +5,7 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { searchActivity } from 'src/app/store/activity.actions';
 import {
@@ -12,6 +13,7 @@ import {
     MIN_PARTICIPANTS,
     ACTIVITY_LIST,
     ActivityType,
+    RESULTS_PAGE_PATH,
 } from 'src/app/utils/activity.const';
 import { Activity } from 'src/app/utils/activity.types';
 
@@ -28,7 +30,11 @@ export class SearchPageComponent implements OnInit {
 
     activityForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private store: Store) {
+    constructor(
+        private formBuilder: FormBuilder,
+        private store: Store,
+        private router: Router
+    ) {
         this.activityForm = this.createForm();
     }
 
@@ -64,5 +70,6 @@ export class SearchPageComponent implements OnInit {
                         : activity.activityType,
             })
         );
+        this.router.navigateByUrl(RESULTS_PAGE_PATH);
     }
 }
