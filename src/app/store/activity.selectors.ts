@@ -26,3 +26,8 @@ export const getErrorState = createSelector(
     getFullActivityState,
     (state) => state.error
 );
+
+export const getActivitySearchOptions = createSelector(
+    getFullActivityState,
+    (state) => state.searchOptions
+);

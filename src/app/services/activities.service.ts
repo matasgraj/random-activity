@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Activity, ActivityRes } from '../utils/activity.types';
 import { Observable } from 'rxjs';
+import { ActivityType } from '../utils/activity.const';
 
-const BORED_API_BASE = 'http://www.boredapi.com/api/activity?';
+const BORED_API_BASE = 'http://www.boredapi.com/api/activity';
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +15,13 @@ export class ActivitiesService {
     getActivity(activity: Activity): Observable<ActivityRes> {
         return this.httpClient.get<ActivityRes>(
             BORED_API_BASE +
-                `participants=${activity.participants}&accessability=${activity.accessability}&type=${activity.activityType}`
+                `?participants=${activity.participants}&accessability=${
+                    activity.accessability / 100
+                }&type=${
+                    activity.activityType === ActivityType.Any
+                        ? ''
+                        : activity.activityType
+                }`
         );
     }
 }

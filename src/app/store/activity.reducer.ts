@@ -1,5 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
+import { INITIAL_SEARCH_OPTIONS } from '../utils/activity.const';
 import { Activity, ActivityRes } from '../utils/activity.types';
 import {
     saveSearchOptions,
@@ -23,11 +24,7 @@ export interface ActivityState extends EntityState<ActivityRes> {
 export const initialState: ActivityState = activityAdapter.getInitialState({
     loaded: false,
     loading: false,
-    searchOptions: {
-        accessability: 0,
-        participants: 1,
-        activityType: '',
-    },
+    searchOptions: INITIAL_SEARCH_OPTIONS,
     error: false,
 });
 

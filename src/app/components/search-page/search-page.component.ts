@@ -6,14 +6,17 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 import { saveSearchOptions } from 'src/app/store/activity.actions';
+import { getActivitySearchOptions } from 'src/app/store/activity.selectors';
 import {
     MAX_PARTICIPANTS,
     MIN_PARTICIPANTS,
     ACTIVITY_LIST,
     ActivityType,
     RESULTS_PAGE_PATH,
+    INITIAL_SEARCH_OPTIONS,
 } from 'src/app/utils/activity.const';
 import { Activity } from 'src/app/utils/activity.types';
 
@@ -30,12 +33,17 @@ export class SearchPageComponent implements OnInit {
 
     activityForm: FormGroup;
 
+    activityOptions: Activity = INITIAL_SEARCH_OPTIONS;
+
     constructor(
         private formBuilder: FormBuilder,
         private store: Store,
         private router: Router
     ) {
         this.activityForm = this.createForm();
+        this.store
+            .pipe(select(getActivitySearchOptions), take(1))
+            .subscribe((options) => (this.activityOptions = options));
     }
 
     ngOnInit(): void {
@@ -44,32 +52,23 @@ export class SearchPageComponent implements OnInit {
 
     createForm(): FormGroup {
         return this.formBuilder.group({
-            participants: new FormControl(1, [
+            participants: new FormControl(this.activityOptions.participants, [
                 Validators.required,
                 Validators.min(this.minParticipants),
                 Validators.max(this.maxParticipants),
             ]),
-            accessability: new FormControl(1, [
+            accessability: new FormControl(this.activityOptions.accessability, [
                 Validators.required,
                 Validators.min(1),
                 Validators.max(100),
             ]),
-            activityType: new FormControl(this.activityType.Any),
+            activityType: new FormControl(this.activityOptions.activityType),
         });
     }
 
     searchActivity(): void {
         const activity: Activity = this.activityForm.value;
-        this.store.dispatch(
-            saveSearchOptions({
-                ...activity,
-                accessability: activity.accessability / 100,
-                activityType:
-                    activity.activityType === ActivityType.Any
-                        ? ''
-                        : activity.activityType,
-            })
-        );
+        this.store.dispatch(saveSearchOptions(activity));
         this.router.navigateByUrl(RESULTS_PAGE_PATH);
     }
 }
