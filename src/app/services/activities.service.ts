@@ -4,7 +4,7 @@ import { Activity, ActivityRes } from '../utils/activity.types';
 import { Observable } from 'rxjs';
 import { ANY_ACTIVITY } from '../utils/activity.const';
 
-const BORED_API_BASE = 'http://www.boredapi.com/api/activity';
+export const BORED_API_BASE = 'http://www.boredapi.com/api/activity';
 
 @Injectable({
     providedIn: 'root',

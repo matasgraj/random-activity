@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { saveSearchOptions } from 'src/app/store/activity.actions';
-import { getActivitySearchOptions } from 'src/app/store/activity.selectors';
+import { getSearchOptions } from 'src/app/store/activity.selectors';
 import {
     MAX_PARTICIPANTS,
     MIN_PARTICIPANTS,
@@ -42,7 +42,7 @@ export class SearchPageComponent implements OnInit {
     ) {
         this.activityForm = this.createForm();
         this.store
-            .pipe(select(getActivitySearchOptions), take(1))
+            .pipe(select(getSearchOptions), take(1))
             .subscribe((options) => (this.activityOptions = options));
     }
 
@@ -50,7 +50,7 @@ export class SearchPageComponent implements OnInit {
         this.activityForm = this.createForm();
     }
 
-    createForm(): FormGroup {
+    private createForm(): FormGroup {
         return this.formBuilder.group({
             participants: new FormControl(this.activityOptions.participants, [
                 Validators.required,
@@ -67,8 +67,7 @@ export class SearchPageComponent implements OnInit {
     }
 
     searchActivity(): void {
-        const activity: Activity = this.activityForm.value;
-        this.store.dispatch(saveSearchOptions(activity));
+        this.store.dispatch(saveSearchOptions(this.activityForm.value));
         this.router.navigateByUrl(RESULTS_PAGE_PATH);
     }
 }

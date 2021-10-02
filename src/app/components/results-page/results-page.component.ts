@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ import { ActivityRes } from 'src/app/utils/activity.types';
     templateUrl: './results-page.component.html',
     styleUrls: ['./results-page.component.scss'],
 })
-export class ResultsPageComponent implements OnInit {
+export class ResultsPageComponent {
     suggestedActivity$: Observable<ActivityRes | undefined>;
     isLoading$: Observable<boolean>;
     isError$: Observable<boolean>;
@@ -25,8 +25,6 @@ export class ResultsPageComponent implements OnInit {
         this.isLoading$ = this.store.pipe(select(getLoadingState));
         this.isError$ = this.store.pipe(select(getErrorState));
     }
-
-    ngOnInit(): void {}
 
     goBack(): void {
         this.router.navigateByUrl(SEARCH_PAGE_PATH);
