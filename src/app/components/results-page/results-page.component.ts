@@ -3,9 +3,13 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { searchActivity } from 'src/app/store/activity.actions';
-import { getActivity } from 'src/app/store/activity.selectors';
+import {
+    getActivity,
+    getErrorState,
+    getLoadingState,
+} from 'src/app/store/activity.selectors';
 import { SEARCH_PAGE_PATH } from 'src/app/utils/activity.const';
-import { Activity, ActivityRes } from 'src/app/utils/activity.types';
+import { ActivityRes } from 'src/app/utils/activity.types';
 
 @Component({
     selector: 'app-results-page',
@@ -14,8 +18,12 @@ import { Activity, ActivityRes } from 'src/app/utils/activity.types';
 })
 export class ResultsPageComponent implements OnInit {
     suggestedActivity$: Observable<ActivityRes | undefined>;
+    isLoading$: Observable<boolean>;
+    isError$: Observable<boolean>;
     constructor(private router: Router, private store: Store) {
         this.suggestedActivity$ = this.store.pipe(select(getActivity));
+        this.isLoading$ = this.store.pipe(select(getLoadingState));
+        this.isError$ = this.store.pipe(select(getErrorState));
     }
 
     ngOnInit(): void {}

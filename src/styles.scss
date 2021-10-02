@@ -10,11 +10,22 @@ body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     background: linear-gradient(94.52deg, #afbf81 0%, #3a8a46 100%);
 }
+@media only screen and (min-width: 600px) {
+    .example {
+        background: red;
+    }
+}
 .container {
-    width: 35vh;
+    width: 450px;
     margin: 12vh auto 0 auto;
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 640px) {
+    .container {
+        width: 300px;
+    }
 }
 
 .fas {
@@ -56,6 +67,10 @@ body {
     font: 500 16px/19px Roboto;
     height: 42px;
     border-radius: 6px;
+}
+
+.mat-button.mat-button-disabled.mat-button-disabled {
+    color: #808080;
 }
 
 .primary-button {

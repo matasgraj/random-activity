@@ -16,3 +16,13 @@ export const getActivity = createSelector(
     getEntities,
     (entities) => Object.keys(entities).map((key) => entities[key])[0]
 );
+
+export const getLoadingState = createSelector(
+    getFullActivityState,
+    (state) => state.loading
+);
+
+export const getErrorState = createSelector(
+    getFullActivityState,
+    (state) => state.error
+);

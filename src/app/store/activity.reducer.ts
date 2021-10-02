@@ -4,6 +4,7 @@ import { Activity, ActivityRes } from '../utils/activity.types';
 import {
     saveSearchOptions,
     searchActivity,
+    searchActivityFail,
     searchActivitySuccess,
 } from './activity.actions';
 
@@ -16,6 +17,7 @@ export interface ActivityState extends EntityState<ActivityRes> {
     loaded: boolean;
     loading: boolean;
     searchOptions: Activity;
+    error: boolean;
 }
 
 export const initialState: ActivityState = activityAdapter.getInitialState({
@@ -26,6 +28,7 @@ export const initialState: ActivityState = activityAdapter.getInitialState({
         participants: 1,
         activityType: '',
     },
+    error: false,
 });
 
 const reducer: ActionReducer<ActivityState> = createReducer(
@@ -47,7 +50,13 @@ const reducer: ActionReducer<ActivityState> = createReducer(
             loading: false,
             loaded: true,
         })
-    )
+    ),
+    on(searchActivityFail, (state) => ({
+        ...state,
+        error: true,
+        loading: false,
+        loaded: true,
+    }))
 );
 
 export function ActivityReducer(

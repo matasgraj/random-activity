@@ -11,6 +11,7 @@ import {
 } from './activity.actions';
 import { switchMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { getSearchOptions } from './activity.selectors';
+import { ActivityRes } from '../utils/activity.types';
 
 @Injectable()
 export class ActivityEffects {
@@ -28,13 +29,19 @@ export class ActivityEffects {
             switchMap(([_, searchOptions]) =>
                 this.activitiesService.getActivity(searchOptions).pipe(
                     switchMap((activity) =>
-                        of(searchActivitySuccess(activity))
+                        this.isActivityFetched(activity)
+                            ? of(searchActivityFail(activity))
+                            : of(searchActivitySuccess(activity))
                     ),
                     catchError((error) => of(searchActivityFail(error)))
                 )
             )
         )
     );
+
+    private isActivityFetched(activity: ActivityRes): boolean {
+        return !!(activity as any).error;
+    }
 
     constructor(
         private actions$: Actions,

@@ -3,21 +3,43 @@
         <button mat-button class="secondary-button" (click)="goBack()">
             <i class="fas fa-arrow-left"></i>BACK
         </button>
-        <button mat-button class="primary-button" (click)="refresh()">
+        <button
+            mat-button
+            class="primary-button"
+            (click)="refresh()"
+            [disabled]="isLoading$ | async"
+        >
             <i class="fas fa-sync"></i>REFRESH
         </button>
     </div>
-    <div
-        class="suggested-activity"
-        *ngIf="suggestedActivity$ | async as suggestedActivity"
-    >
-        <span class="activity-text">{{ suggestedActivity.activity }}</span>
-        <button
-            mat-button
-            class="secondary-button"
-            *ngIf="!!suggestedActivity.link"
+    <div *ngIf="!(isLoading$ | async)">
+        <span
+            class="suggested-activity activity-message"
+            *ngIf="isError$ | async"
         >
-            <i class="fas fa-arrow-left"></i>LINK
-        </button>
+            No activity found with the specified parameters
+        </span>
+        <div *ngIf="!(isError$ | async)">
+            <div
+                class="suggested-activity"
+                *ngIf="suggestedActivity$ | async as suggestedActivity"
+            >
+                <span class="activity-message">{{
+                    suggestedActivity.activity
+                }}</span>
+                <a
+                    mat-button
+                    class="secondary-button"
+                    *ngIf="!!suggestedActivity.link"
+                    href="{{ suggestedActivity.link }}"
+                    target="_blank"
+                >
+                    <i class="fas fa-link"></i>LINK
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="suggested-activity activity-message" *ngIf="isLoading$ | async">
+        Activity suggestion is loading, please wait...
     </div>
 </div>
