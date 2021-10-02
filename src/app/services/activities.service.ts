@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Activity, ActivityRes } from '../utils/activity.types';
 import { Observable } from 'rxjs';
-import { ActivityType } from '../utils/activity.const';
+import { ANY_ACTIVITY } from '../utils/activity.const';
 
 const BORED_API_BASE = 'http://www.boredapi.com/api/activity';
 
@@ -18,7 +18,7 @@ export class ActivitiesService {
                 `?participants=${activity.participants}&accessability=${
                     activity.accessability / 100
                 }&type=${
-                    activity.activityType === ActivityType.Any
+                    activity.activityType === ANY_ACTIVITY
                         ? ''
                         : activity.activityType
                 }`

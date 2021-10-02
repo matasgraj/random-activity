@@ -24,7 +24,9 @@
             <span>Activity type:</span>
         </div>
         <mat-radio-group formControlName="activityType">
-            <mat-radio-button value="any">Any</mat-radio-button>
+            <mat-radio-button value="{{ activityTypeAny }}"
+                >Any</mat-radio-button
+            >
             <br />
             <mat-radio-button
                 *ngFor="let activity of activityList"

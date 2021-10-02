@@ -13,10 +13,10 @@ import { getActivitySearchOptions } from 'src/app/store/activity.selectors';
 import {
     MAX_PARTICIPANTS,
     MIN_PARTICIPANTS,
-    ACTIVITY_LIST,
     ActivityType,
     RESULTS_PAGE_PATH,
     INITIAL_SEARCH_OPTIONS,
+    ANY_ACTIVITY,
 } from 'src/app/utils/activity.const';
 import { Activity } from 'src/app/utils/activity.types';
 
@@ -28,8 +28,8 @@ import { Activity } from 'src/app/utils/activity.types';
 export class SearchPageComponent implements OnInit {
     minParticipants = MIN_PARTICIPANTS;
     maxParticipants = MAX_PARTICIPANTS;
-    activityList = ACTIVITY_LIST;
-    activityType = ActivityType;
+    activityList = Object.keys(ActivityType);
+    activityTypeAny = ANY_ACTIVITY;
 
     activityForm: FormGroup;
 
