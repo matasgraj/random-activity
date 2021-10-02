@@ -17,6 +17,11 @@ body {
     flex-direction: column;
 }
 
+.fas {
+    padding-bottom: 3px;
+    padding-right: 8px;
+}
+
 // mat-slider
 .mat-accent .mat-slider-track-fill {
     background-color: #fff !important;
@@ -43,4 +48,17 @@ body {
 }
 .mat-radio-label-content {
     color: #fff;
+}
+
+// mat-button
+
+.mat-button {
+    font: 500 16px/19px Roboto;
+    height: 42px;
+    border-radius: 6px;
+}
+
+.primary-button {
+    background-color: #fff;
+    color: #306028;
 }

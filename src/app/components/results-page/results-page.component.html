@@ -1,1 +1,23 @@
-<div class="container"></div>
+<div class="container">
+    <div class="action-buttons">
+        <button mat-button class="secondary-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>BACK
+        </button>
+        <button mat-button class="primary-button" (click)="refresh()">
+            <i class="fas fa-sync"></i>REFRESH
+        </button>
+    </div>
+    <div
+        class="suggested-activity"
+        *ngIf="suggestedActivity$ | async as suggestedActivity"
+    >
+        <span class="activity-text">{{ suggestedActivity.activity }}</span>
+        <button
+            mat-button
+            class="secondary-button"
+            *ngIf="!!suggestedActivity.link"
+        >
+            <i class="fas fa-arrow-left"></i>LINK
+        </button>
+    </div>
+</div>

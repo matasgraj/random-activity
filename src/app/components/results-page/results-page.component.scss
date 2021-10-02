@@ -1,0 +1,22 @@
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.primary-button {
+    width: 65%;
+}
+.secondary-button {
+    width: 30%;
+    border: 2px solid #fff;
+    color: #fff;
+}
+.suggested-activity {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+}
+.activity-text {
+    font: normal 400 32px/38px Roboto;
+    color: #fff;
+    margin-bottom: 20px;
+}

@@ -34,11 +34,13 @@ const reducer: ActionReducer<ActivityState> = createReducer(
         ...initialState,
         searchOptions: action.payload,
     })),
-    on(searchActivity, (state) => ({
-        ...state,
-        loading: true,
-        loaded: false,
-    })),
+    on(searchActivity, (state) =>
+        activityAdapter.removeAll({
+            ...state,
+            loading: true,
+            loaded: false,
+        })
+    ),
     on(searchActivitySuccess, (state, action) =>
         activityAdapter.addOne(action.payload, {
             ...state,
