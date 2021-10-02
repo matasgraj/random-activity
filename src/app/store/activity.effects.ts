@@ -1,22 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { ActivitiesService } from '../services/activities.service';
 import {
+    saveSearchOptions,
     searchActivity,
     searchActivityFail,
     searchActivitySuccess,
 } from './activity.actions';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, withLatestFrom } from 'rxjs/operators';
+import { getSearchOptions } from './activity.selectors';
 
 @Injectable()
 export class ActivityEffects {
-    public serachActivity$: Observable<Action> = createEffect((): any =>
+    public saveSearchOptions$: Observable<Action> = createEffect((): any =>
+        this.actions$.pipe(
+            ofType(saveSearchOptions),
+            switchMap(() => of(searchActivity()))
+        )
+    );
+
+    public searchActivity$: Observable<Action> = createEffect((): any =>
         this.actions$.pipe(
             ofType(searchActivity),
-            switchMap((action) =>
-                this.activitiesService.getActivity(action.payload).pipe(
+            withLatestFrom(this.store.pipe(select(getSearchOptions))),
+            switchMap(([_, searchOptions]) =>
+                this.activitiesService.getActivity(searchOptions).pipe(
                     switchMap((activity) =>
                         of(searchActivitySuccess(activity))
                     ),
@@ -28,6 +38,7 @@ export class ActivityEffects {
 
     constructor(
         private actions$: Actions,
-        private activitiesService: ActivitiesService
+        private activitiesService: ActivitiesService,
+        private store: Store
     ) {}
 }

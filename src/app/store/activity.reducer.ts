@@ -1,7 +1,11 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
-import { ActivityRes } from '../utils/activity.types';
-import { searchActivity, searchActivitySuccess } from './activity.actions';
+import { Activity, ActivityRes } from '../utils/activity.types';
+import {
+    saveSearchOptions,
+    searchActivity,
+    searchActivitySuccess,
+} from './activity.actions';
 
 export const activityAdapter: EntityAdapter<ActivityRes> =
     createEntityAdapter<ActivityRes>({
@@ -11,17 +15,27 @@ export const activityAdapter: EntityAdapter<ActivityRes> =
 export interface ActivityState extends EntityState<ActivityRes> {
     loaded: boolean;
     loading: boolean;
+    searchOptions: Activity;
 }
 
 export const initialState: ActivityState = activityAdapter.getInitialState({
     loaded: false,
     loading: false,
+    searchOptions: {
+        accessability: 0,
+        participants: 1,
+        activityType: '',
+    },
 });
 
 const reducer: ActionReducer<ActivityState> = createReducer(
     initialState,
-    on(searchActivity, () => ({
+    on(saveSearchOptions, (state, action) => ({
         ...initialState,
+        searchOptions: action.payload,
+    })),
+    on(searchActivity, (state) => ({
+        ...state,
         loading: true,
         loaded: false,
     })),

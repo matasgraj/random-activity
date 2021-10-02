@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { searchActivity } from 'src/app/store/activity.actions';
+import { saveSearchOptions } from 'src/app/store/activity.actions';
 import {
     MAX_PARTICIPANTS,
     MIN_PARTICIPANTS,
@@ -61,7 +61,7 @@ export class SearchPageComponent implements OnInit {
     searchActivity(): void {
         const activity: Activity = this.activityForm.value;
         this.store.dispatch(
-            searchActivity({
+            saveSearchOptions({
                 ...activity,
                 accessability: activity.accessability / 100,
                 activityType:

@@ -1,10 +1,12 @@
 import { createAction } from '@ngrx/store';
 import { Activity } from '../utils/activity.types';
 
-export const searchActivity = createAction(
-    'Search activity',
+export const saveSearchOptions = createAction(
+    'Save search options',
     (payload: Activity) => ({ payload })
 );
+
+export const searchActivity = createAction('Search activity');
 export const searchActivitySuccess = createAction(
     'Search activity SUCCESS',
     (payload: any) => ({ payload })
