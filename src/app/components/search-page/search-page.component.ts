@@ -28,7 +28,7 @@ import { Activity } from 'src/app/utils/activity.types';
 export class SearchPageComponent implements OnInit {
     minParticipants = MIN_PARTICIPANTS;
     maxParticipants = MAX_PARTICIPANTS;
-    activityList = Object.keys(ActivityType);
+    activityList = ActivityType;
     activityTypeAny = ANY_ACTIVITY;
 
     activityForm: FormGroup;

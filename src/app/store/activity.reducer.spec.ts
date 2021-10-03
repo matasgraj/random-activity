@@ -56,7 +56,6 @@ describe('Activity Reducer', () => {
             expect(state).toEqual({
                 ...initialState,
                 loading: true,
-                loaded: false,
                 ids: [],
                 entities: {},
             });
@@ -70,7 +69,6 @@ describe('Activity Reducer', () => {
             expect(state).toEqual({
                 ...initialState,
                 loading: false,
-                loaded: true,
                 ids: ['123'],
                 entities: { '123': suggestedActivityMock },
             });
@@ -78,13 +76,12 @@ describe('Activity Reducer', () => {
     });
     describe('searchActivityFail action', () => {
         it('should set error state', () => {
-            const action: Action = searchActivityFail({ error: 'error' });
+            const action: Action = searchActivityFail();
             const state: ActivityState = ActivityReducer(initialState, action);
 
             expect(state).toEqual({
                 ...initialState,
                 loading: false,
-                loaded: true,
                 error: true,
             });
         });

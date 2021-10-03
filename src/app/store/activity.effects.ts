@@ -30,10 +30,10 @@ export class ActivityEffects {
                 this.activitiesService.getActivity(searchOptions).pipe(
                     switchMap((activity) =>
                         this.isActivityFetched(activity)
-                            ? of(searchActivityFail(activity))
+                            ? of(searchActivityFail())
                             : of(searchActivitySuccess(activity))
                     ),
-                    catchError((error) => of(searchActivityFail(error)))
+                    catchError(() => of(searchActivityFail()))
                 )
             )
         )

@@ -11,7 +11,4 @@ export const searchActivitySuccess = createAction(
     'Search activity SUCCESS',
     (payload: ActivityRes) => ({ payload })
 );
-export const searchActivityFail = createAction(
-    'Search activity FAILED',
-    (error: any) => ({ error })
-);
+export const searchActivityFail = createAction('Search activity FAILED');

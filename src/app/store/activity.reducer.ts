@@ -15,14 +15,12 @@ export const activityAdapter: EntityAdapter<ActivityRes> =
     });
 
 export interface ActivityState extends EntityState<ActivityRes> {
-    loaded: boolean;
     loading: boolean;
     searchOptions: Activity;
     error: boolean;
 }
 
 export const initialState: ActivityState = activityAdapter.getInitialState({
-    loaded: false,
     loading: false,
     searchOptions: INITIAL_SEARCH_OPTIONS,
     error: false,
@@ -38,21 +36,18 @@ const reducer: ActionReducer<ActivityState> = createReducer(
         activityAdapter.removeAll({
             ...state,
             loading: true,
-            loaded: false,
         })
     ),
     on(searchActivitySuccess, (state, action) =>
         activityAdapter.addOne(action.payload, {
             ...state,
             loading: false,
-            loaded: true,
         })
     ),
     on(searchActivityFail, (state) => ({
         ...state,
         error: true,
         loading: false,
-        loaded: true,
     }))
 );
 

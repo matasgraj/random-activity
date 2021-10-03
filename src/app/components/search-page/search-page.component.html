@@ -29,9 +29,9 @@
             >
             <br />
             <mat-radio-button
-                *ngFor="let activity of activityList"
-                [value]="activity"
-                >{{ activity }}</mat-radio-button
+                *ngFor="let activity of activityList | keyvalue"
+                [value]="activity.value"
+                >{{ activity.key }}</mat-radio-button
             >
         </mat-radio-group>
         <button mat-button class="primary-button" type="submit">

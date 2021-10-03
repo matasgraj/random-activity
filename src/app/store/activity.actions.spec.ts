@@ -35,9 +35,8 @@ describe('Activity Actions', () => {
         });
     });
     it('should create searchActivityFail action', () => {
-        expect(searchActivityFail('Error')).toEqual({
+        expect(searchActivityFail()).toEqual({
             type: 'Search activity FAILED',
-            error: 'Error',
         });
     });
 });

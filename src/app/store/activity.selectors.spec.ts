@@ -28,7 +28,6 @@ describe('Activity Selector', () => {
             activity: {
                 ids: ['123'],
                 entities: { '123': suggestedActivityMock },
-                loaded: true,
                 loading: false,
                 error: false,
                 searchOptions: INITIAL_SEARCH_OPTIONS,

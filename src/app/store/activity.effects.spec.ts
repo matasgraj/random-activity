@@ -83,15 +83,16 @@ describe('Activity Effects', () => {
             );
         });
         it('should dispatch searchActivityFail action', () => {
-            const errorMock = { error: 'No activities found' };
             serviceSpy.calls.reset();
-            serviceSpy.and.returnValue(of(errorMock as any));
+            serviceSpy.and.returnValue(
+                of({ error: 'No activities found' } as any)
+            );
             actions$ = cold('-a-', {
                 a: searchActivity(),
             });
             expect(effects.searchActivity$).toBeObservable(
                 cold('-b', {
-                    b: searchActivityFail(errorMock),
+                    b: searchActivityFail(),
                 })
             );
         });
